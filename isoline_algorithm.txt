@@ -1,0 +1,69 @@
+﻿1.初始化网格
+	1.1.四个点，等值点分布，追踪入口，访问状态，边界情况
+2.追踪等值线
+	2.1.计算出入口.记录访问状态
+	2.2.计算追踪网格，记录其追踪入口，标记追踪状态
+	2.3开放式出口，封闭式出口
+
+
+
+
+struct Point
+{
+	Point() {}
+	~Point() {}
+	double x;//经度
+	double y;//纬度
+	double z;//目标数据
+};
+
+struct grid
+{
+	grid() {}
+	~grid() {}
+	size_t i, j;//网格编号
+	Point a, b, c, d;//网格的四个点（从左下开始 以逆时针方向考虑）
+	size_t gridType;//网格中等值点分布
+	size_t gridType15;//处理特殊的等值点分布(四条边都包含等值点)
+	size_t trendType;//网格追踪入口
+	Point pin, pout;//网格内等值线出入口
+	bool isTraveled;//网格访问状态
+	bool isEdge1;// 网格的1边在界上
+	bool isEdge2;// 网格的2边在界上
+	bool isEdge4;// 网格的4边在界上
+	bool isEdge8;// 网格的8边在界上
+};
+
+class ISOLINE
+{
+public:
+	ISOLINE(){};
+	~ISOLINE();
+
+	void Generateisoline(std::vector<float>* slice, double longitudeStart, double longitudeEnd, double longitudeStep,
+		double latitudeStart, double latitudeEnd, double latitudeStep, double isovalue,
+		std::vector<vec2f>& points);
+
+	void Generateisoline_2(std::vector<float>* slice, double longitudeStart, double longitudeEnd, double longitudeStep,
+		double latitudeStart, double latitudeEnd, double latitudeStep, double isovalue,
+		std::vector<std::vector<vec2f>>& points);
+
+private:
+	grid **grid_;//网格网
+	size_t width_;//网格宽度
+	size_t height_;//网格高度
+
+};
+
+/*
+							  4
+					 d·--------------·c
+					 |                |
+					 |                |
+					8|                |
+					 |                |2
+					 |                |
+					 |                |
+					 a·--------------·b
+							  1
+*/
