@@ -42,11 +42,11 @@ public:
 
 	void Generateisoline(std::vector<float>* slice, double longitudeStart, double longitudeEnd, double longitudeStep,
 		double latitudeStart, double latitudeEnd, double latitudeStep, double isovalue,
-		std::vector<vec2f>& points);
+		std::vector<vec2f>& points);//等值点集合
 
 	void Generateisoline_2(std::vector<float>* slice, double longitudeStart, double longitudeEnd, double longitudeStep,
 		double latitudeStart, double latitudeEnd, double latitudeStep, double isovalue,
-		std::vector<std::vector<vec2f>>& points);
+		std::vector<std::vector<vec2f>>& points);//等值线集合
 
 private:
 	grid **grid_;//网格网
@@ -56,7 +56,7 @@ private:
 };
 
 /*
-							  4
+					          4
 					 d·--------------·c
 					 |                |
 					 |                |
@@ -65,5 +65,5 @@ private:
 					 |                |
 					 |                |
 					 a·--------------·b
-							  1
+					          1
 */
