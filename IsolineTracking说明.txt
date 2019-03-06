@@ -1,0 +1,12 @@
+使用举例
+
+
+std::vector<std::vector<std::vec2f>> points;//等值线集合
+ISOLINETracking generator;
+generator.GenerateTracking(&normSpeeds, //准备好的数据（点集）
+	lonStart, lonEnd, abs(lonInter),//最左边经度，最右边经度，经度间隔
+	latStart, latEnd, abs(latInter),//最下边纬度，最上边纬度，纬度间隔
+	isovalue,//目标等值
+	points);//生成等值线
+	
+	
